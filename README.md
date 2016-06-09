@@ -1,1 +1,4 @@
-# tally
+### warmup
+
+Tally the selected items
+
