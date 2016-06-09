@@ -1,7 +1,5 @@
-$('[name="button"]').click(function(){
+$('[name="button"]').click(() => {
   $('#total').html($('.selectable').val().map((val) => {
     return parseFloat(val.replace(/[^\d.-]/g, ''))
-  }).reduce((prev, curv) => {
-    return prev + curv
-  }))
+  }).reduce((p, c) => { return p + c }))
 })
