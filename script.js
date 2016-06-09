@@ -1,26 +1,12 @@
-document.getElementsByName("button")[0].addEventListener("click",function() {doPrices()});
+document.getElementsByName("button")[0].addEventListener("click",function() {doPrices(document.getElementsByName("toys")[0].options)});
 
-function doPrices() {
-  var values=getSelections()
-  var result=0
-  el=document.getElementById("total")
-  if (values.length === 0) {
-    result = 0
-  } else {
-    result = values.reduce(function(total, next) {
-    return Number(total) + Number(next);
-    })
-  }
-  el.innerHTML = `The sum is ${result.toFixed(2)}`
-}
-function getSelections() {
-  var prices = document.getElementsByName("toys")[0]
+function doPrices(arrayChoices) {
   var values = []
-  for (var i = 0; i < prices.options.length; i++) {
-    if (prices.options[i].selected) {
-      var tempArray = prices.options[i].value.split(" ")
-      values.push(Number(tempArray[tempArray.length - 1]))
+  for (var i = 0; i < arrayChoices.length; i++) {
+    if (arrayChoices[i].selected) {
+      values.push(Number(arrayChoices[i].value.split(" ")[arrayChoices[i].value.split(" ").length-1]))
     }
   }
-  return values
+  var result = values.length > 0 ? values.reduce(function(sum,next){return Number(sum)+Number(next)}) : 0
+  document.getElementById("total").innerHTML = `The sum is ${result.toFixed(2)}`
 }
